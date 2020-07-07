@@ -3,13 +3,15 @@
   作者：XCSOFT
   时间：2020/07/07
   Web：https://xsot.cn
+  Github: https://github.com/soxft/bugbug
 -->
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/soxft/cdn@master/mdui/css/mdui.min.css">
       <script src="https://cdn.jsdelivr.net/gh/soxft/cdn@master/mdui/js/mdui.min.js"></script>
-        <title>BUGBUGBUG</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+      <title>BUGBUGBUG</title>
     </head>
     <body>
         <center>
@@ -46,6 +48,10 @@
         </center>
         <script>
         var $ = mdui.JQ;
+        //欢迎
+        mdui.snackbar({
+          message: "Welcome To Bugbug<br />Try how many times you can fix all Bugs"
+        });
         function rand(x)
         {
           //随机指令
@@ -61,7 +67,22 @@
               }else{
                 rex = items[Math.floor(Math.random()*items.length)];
                 $('#' + j + '').prop('checked', rex);
-                console.log('(autoControl)Turn ' + j + ' => ' + rex)
+                //console.log('(autoControl)Turn ' + j + ' => ' + rex)
+              }
+            }
+            //判断是否全部关闭
+            for(k = 1;k <= 5;k++)
+            {
+              if($('#' + k + '').is(':checked', true))
+              {
+                break;
+              }else{
+                if(k == 5)
+                {
+                  mdui.snackbar({
+                    message: "Unbelievable!You fixall Bugs!Why not try again?<br />You can contact me at contact@xcsoft.top"
+                  });
+                }
               }
             }
         }
