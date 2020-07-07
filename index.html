@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!-- 
+  作者：XCSOFT
+  时间：2020/07/07
+  Web：https://xsot.cn
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/soxft/cdn@master/mdui/css/mdui.min.css">
+      <script src="https://cdn.jsdelivr.net/gh/soxft/cdn@master/mdui/js/mdui.min.js"></script>
+        <title>BUGBUGBUG</title>
+    </head>
+    <body>
+        <center>
+            <br />
+            <div class="mdui-container">
+                <div class="mdui-typo">
+                    <h2 class="doc-chapter-title doc-chapter-title-first">BUG</h2>
+                    <label class="mdui-switch">
+                      BUG1&nbsp;->&emsp;<input id="1" onclick="rand('1')" type="checkbox" /> <i class="mdui-switch-icon"></i>
+                    </label>
+                    <!--bug1-->
+                    <br />
+                    <label class="mdui-switch">
+                      BUG2&nbsp;->&emsp;<input id="2" onclick="rand('2')" type="checkbox" /> <i class="mdui-switch-icon"></i>
+                    </label>
+                    <!--bug2-->
+                    <br />
+                    <label class="mdui-switch">
+                      BUG3&nbsp;->&emsp;<input id="3" onclick="rand('3')" type="checkbox" /> <i class="mdui-switch-icon"></i>
+                    </label>
+                    <!--bug3-->
+                    <br />
+                    <label class="mdui-switch">
+                      BUG4&nbsp;->&emsp;<input id="4" onclick="rand('4')" type="checkbox" /> <i class="mdui-switch-icon"></i>
+                    </label>
+                    <!--bug4-->
+                    <br />
+                    <label class="mdui-switch">
+                      BUG5&nbsp;->&emsp;<input id="5" onclick="rand('5')" type="checkbox" /> <i class="mdui-switch-icon"></i>
+                    </label>
+                    <!--bug5-->
+                </div>
+            </div>
+        </center>
+        <script>
+        var $ = mdui.JQ;
+        function rand(x)
+        {
+          //随机指令
+            var result = $('#' + x + '').is(':checked', true);
+            console.log('[userControl]Turn ' + x + ' => ' + result); //获取用户操作
+            var items = [true,true,false]; //true的可能性必须大点对不对
+            for(j = 1;j <= 5;j++)
+            {
+              if(j == x)
+              {
+                //console.log("pass")
+                //如果操作与目前一致，则跳过
+              }else{
+                rex = items[Math.floor(Math.random()*items.length)];
+                $('#' + j + '').prop('checked', rex);
+                console.log('(autoControl)Turn ' + j + ' => ' + rex)
+              }
+            }
+        }
+        //首先随机打开几个
+        num = Math.floor((Math.random()*3)+1); //获取随即打开的次数
+        console.log("[random_num] => " + num)
+        for (i = 1; i <= num; i++) { 
+          re = Math.floor((Math.random()*5)+1);
+          if($('#' + re + '').is(':checked', true))
+          {
+            num++
+            //如果本来就是开着的
+          }else{
+            $('#' + re + '').prop('checked', true);
+            console.log("[OPEN] => " + re)
+          }
+        }
+        </script>
+    </body>
+</html>
